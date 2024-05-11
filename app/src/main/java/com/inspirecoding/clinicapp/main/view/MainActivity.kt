@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp
+package com.inspirecoding.clinicapp.main.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
