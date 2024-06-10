@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp.ui.theme
+package com.inspirecoding.clinicapp.ui.theme.type
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

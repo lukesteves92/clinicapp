@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp.ui.theme
+package com.inspirecoding.clinicapp.ui.theme.main
 
 import android.app.Activity
 import android.os.Build
@@ -15,18 +15,23 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.inspirecoding.clinicapp.ui.theme.type.Typography
+import com.inspirecoding.clinicapp.ui.theme.color.DarkBlue
+import com.inspirecoding.clinicapp.ui.theme.color.LightBlue
+import com.inspirecoding.clinicapp.ui.theme.color.White
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = DarkBlue,
+    secondary = LightBlue,
+    tertiary = White
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    onSurface = Color.DarkGray
+    primary = LightBlue,
+    secondary = DarkBlue,
+    tertiary = White,
+    onSurface = Color.DarkGray,
+    background = White
 
     /* Other default colors to override
 background = Color(0xFFFFFBFE),

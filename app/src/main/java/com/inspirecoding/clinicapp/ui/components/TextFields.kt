@@ -29,7 +29,6 @@ import com.inspirecoding.clinicapp.util.mask.MaskVisualTransformation
 @Composable
 fun InputCustomField(
     modifier: Modifier = Modifier,
-    textDatabase: String?,
     text: MutableState<String>,
     label: String,
     mask: String? = null,
@@ -43,7 +42,7 @@ fun InputCustomField(
 ) {
     BaseTextField(
         modifier = modifier,
-        text = if (textDatabase.isNullOrEmpty()) text.value else textDatabase,
+        text = text.value,
         onTextChange = {
             onTextChange.invoke(it)
             text.value = it
@@ -51,7 +50,7 @@ fun InputCustomField(
         maxLength = maxLength,
         mask = mask,
         label = label,
-        state = if (textDatabase.isNullOrEmpty()) state else TextFieldState.SUCCESS,
+        state = state,
         enabled = enabled,
         errorMessage = errorMessage,
         descriptionMessage = descriptionMessage,
@@ -76,7 +75,6 @@ fun BaseTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     state: TextFieldState = TextFieldState.DEFAULT,
-    textColor: Color = Color.Gray,
     singleLine: Boolean = true,
     onTextChange: (String) -> Unit
 ) {
@@ -127,12 +125,12 @@ fun BaseTextField(
             },
             placeholder = { Text(text = hintText, style = Typography.bodyMedium) },
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = containerColor,
-                unfocusedContainerColor = containerColor,
-                disabledContainerColor = containerColor,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
+                focusedIndicatorColor = containerColor,
+                unfocusedIndicatorColor = containerColor,
+                disabledIndicatorColor = containerColor
             ),
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
