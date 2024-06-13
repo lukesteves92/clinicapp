@@ -31,14 +31,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.inspirecoding.clinicapp.core.redirect.HomeRedirect
 import com.inspirecoding.clinicapp.ds.R
 import com.inspirecoding.clinicapp.ds.components.InputCustomField
 import com.inspirecoding.clinicapp.ds.theme.color.DarkBlue
 import com.inspirecoding.clinicapp.ds.theme.color.White
+import org.koin.androidx.compose.inject
 
 @Composable
 fun LoginScreen() {
     val context = LocalContext.current
+    val redirectHome: HomeRedirect by inject()
     val email = remember { mutableStateOf("") }
     val secret = remember { mutableStateOf("") }
     var secretVisibility = remember { mutableStateOf(false) }
@@ -98,7 +101,7 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(24.dp))
         Button(
             onClick = {
-                // Lógica de login
+                redirectHome.redirectToHome(context)
                 Toast.makeText(context, "Entrar", Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier.fillMaxWidth(),
