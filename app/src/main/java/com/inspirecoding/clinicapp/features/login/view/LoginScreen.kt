@@ -31,10 +31,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.inspirecoding.clinicapp.R
-import com.inspirecoding.clinicapp.ui.components.InputCustomField
-import com.inspirecoding.clinicapp.ui.theme.color.DarkBlue
-import com.inspirecoding.clinicapp.ui.theme.color.White
+import com.inspirecoding.clinicapp.ds.R
+import com.inspirecoding.clinicapp.ds.components.InputCustomField
+import com.inspirecoding.clinicapp.ds.theme.color.DarkBlue
+import com.inspirecoding.clinicapp.ds.theme.color.White
 
 @Composable
 fun LoginScreen() {

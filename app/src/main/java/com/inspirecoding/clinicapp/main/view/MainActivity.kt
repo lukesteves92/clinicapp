@@ -12,8 +12,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.inspirecoding.clinicapp.navigation.nav.Navigation
-import com.inspirecoding.clinicapp.navigation.screen.Screen
-import com.inspirecoding.clinicapp.ui.theme.main.ClinicAppTheme
+import com.inspirecoding.clinicapp.core.navigation.screen.Screen
+import com.inspirecoding.clinicapp.ds.theme.main.ClinicAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

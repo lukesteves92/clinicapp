@@ -14,9 +14,11 @@ class NavigationManager(private val scope: CoroutineScope) {
 
     fun navigate(route: String, builder: (NavOptionsBuilder.() -> Unit)? = null) {
         scope.launch {
-            navigationEvent.emit(NavigationCommand.Navigate(destination = route,
-                type = NavigationType.NavigateTo,
-                navOptions = builder?.let { navOptions(it) }))
+            navigationEvent.emit(
+                NavigationCommand.Navigate(destination = route,
+                    type = NavigationType.NavigateTo,
+                    navOptions = builder?.let { navOptions(it) })
+            )
         }
     }
 

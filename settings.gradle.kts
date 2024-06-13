@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "ClinicApp"
 include(":app")
+include(":home")
+include(":ds")
+include(":core")

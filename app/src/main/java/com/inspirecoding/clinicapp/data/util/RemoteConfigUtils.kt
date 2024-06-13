@@ -19,7 +19,7 @@ class RemoteConfigUtils {
 
         firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
     }
-    suspend fun getFeatureValueBoolean(featureKey: String, defaultValue: Boolean): Boolean {
+    suspend fun getFeatureValueBoolean(featureKey: String): Boolean {
         return try {
             firebaseRemoteConfig.fetchAndActivate().await()
             firebaseRemoteConfig.getBoolean(featureKey)
@@ -29,7 +29,7 @@ class RemoteConfigUtils {
         }
     }
 
-    suspend fun getFeatureValueString(featureKey: String, defaultValue: String): String {
+    suspend fun getFeatureValueString(featureKey: String): String {
         return try {
             firebaseRemoteConfig.fetchAndActivate().await()
             firebaseRemoteConfig.getString(featureKey)

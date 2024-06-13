@@ -1,0 +1,7 @@
+<resources>
+    <string name="clinicapp_email_login_label">E-mail</string>
+    <string name="clinicapp_secret_login_label">Senha</string>
+    <string name="clinicapp_forget_secret_login_label">Esqueceu sua senha?</string>
+    <string name="clinicapp_register_login_label">Inscreva-se</string>
+    <string name="clinicapp_remember_me_login_label">Lembrar de mim</string>
+</resources>

@@ -9,15 +9,15 @@ import kotlinx.coroutines.flow.flow
 internal class GetFeatureToggleLogin(
     private val remoteConfigUtils: RemoteConfigUtils
 ) {
-    fun getLoginFeatureValueBoolean(featureKey: String, defaultValue: Boolean): Flow<Boolean> {
+    fun getLoginFeatureValueBoolean(featureKey: String): Flow<Boolean> {
         return flow {
-            emit(remoteConfigUtils.getFeatureValueBoolean(featureKey = featureKey, defaultValue))
+            emit(remoteConfigUtils.getFeatureValueBoolean(featureKey = featureKey))
         }
     }
 
-    fun getLoginFeatureValueString(featureKey: String, defaultValue: String): Flow<FeatureToggleLoginModel> {
+    fun getLoginFeatureValueString(featureKey: String): Flow<FeatureToggleLoginModel> {
         return flow {
-            emit(remoteConfigUtils.getFeatureValueString(featureKey = featureKey, defaultValue).toFeatureToggleLoginModel())
+            emit(remoteConfigUtils.getFeatureValueString(featureKey = featureKey).toFeatureToggleLoginModel())
         }
     }
 }

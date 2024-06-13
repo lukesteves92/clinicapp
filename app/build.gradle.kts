@@ -140,4 +140,13 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebaseConfig)
+
+    //Project Home
+    implementation(project(":home"))
+
+    //Project DS
+    implementation(project(":ds"))
+
+    //Project Core
+    implementation(project(":core"))
 }

@@ -13,7 +13,7 @@ import com.inspirecoding.clinicapp.features.login.view.LoginScreen
 import com.inspirecoding.clinicapp.navigation.manager.NavigationCommand
 import com.inspirecoding.clinicapp.navigation.manager.NavigationManager
 import com.inspirecoding.clinicapp.navigation.manager.NavigationType
-import com.inspirecoding.clinicapp.navigation.screen.Screen
+import com.inspirecoding.clinicapp.core.navigation.screen.Screen
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.inject
 
