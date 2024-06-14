@@ -64,7 +64,8 @@ fun Login(
     state: LoginState,
     action: (LoginAction) -> Unit
 ) {
-    action(LoginAction.GetLoginFeatureToggleScreen)
+
+    action.invoke(LoginAction.GetLoginFeatureToggleScreen)
 
     when (state) {
         is LoginState.GetLoginFeatureToggleScreen -> LoginMainScreen(featureToggleLoginModel = state.featureToggleLoginModel ?: FeatureToggleLoginModel())

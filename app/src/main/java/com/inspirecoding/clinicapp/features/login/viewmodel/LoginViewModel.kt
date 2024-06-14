@@ -2,9 +2,9 @@ package com.inspirecoding.clinicapp.features.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.inspirecoding.clinicapp.commons.singleorthrow.singleOrThrow
+import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
+import com.inspirecoding.clinicapp.domain.usecase.GetFeatureToggleUseCase
 import com.inspirecoding.clinicapp.features.login.action.LoginAction
-import com.inspirecoding.clinicapp.features.login.featuretoggle.GetFeatureToggleLogin
 import com.inspirecoding.clinicapp.features.login.state.LoginState
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val getFeatureToggleLogin: GetFeatureToggleLogin
+    private val getFeatureToggleUseCase: GetFeatureToggleUseCase
 ): ViewModel() {
 
     private val pendingActions = MutableSharedFlow<LoginAction>()
@@ -24,7 +24,6 @@ class LoginViewModel(
 
     init {
         handleActions()
-        getLoginFeatureToggleScreen()
     }
 
     private fun handleActions() {
@@ -39,7 +38,7 @@ class LoginViewModel(
 
     private fun getLoginFeatureToggleScreen() {
         viewModelScope.launch {
-            LoginState.GetLoginFeatureToggleScreen(featureToggleLoginModel = getFeatureToggleLogin.getLoginFeatureValueString()).updateState()
+            LoginState.GetLoginFeatureToggleScreen(featureToggleLoginModel = getFeatureToggleUseCase.getFeatureToggleValueString(featureKey = KEY_FT_LOGIN_SCREEN, clazz = FeatureToggleLoginModel())).updateState()
         }
     }
 
@@ -50,4 +49,8 @@ class LoginViewModel(
     }
 
     private fun LoginState.updateState() = _state.update { this }
+
+    companion object {
+        private const val KEY_FT_LOGIN_SCREEN = "ft_clinicapp_login_screen"
+    }
 }

@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
             val remoteConfigUtils: RemoteConfigUtils by inject()
             val navController = rememberNavController()
 
-            remoteConfigUtils.initFirebaseRemoteConfig(this)
             ClinicAppTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     NavigateMain(navController = navController)
