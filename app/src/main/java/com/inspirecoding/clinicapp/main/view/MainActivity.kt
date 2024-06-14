@@ -11,15 +11,21 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.firebase.FirebaseApp
 import com.inspirecoding.clinicapp.navigation.nav.Navigation
 import com.inspirecoding.clinicapp.core.navigation.screen.Screen
+import com.inspirecoding.clinicapp.core.remoteconfig.RemoteConfigUtils
 import com.inspirecoding.clinicapp.ds.theme.main.ClinicAppTheme
+import org.koin.androidx.compose.inject
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val remoteConfigUtils: RemoteConfigUtils by inject()
             val navController = rememberNavController()
+
+            remoteConfigUtils.initFirebaseRemoteConfig(this)
             ClinicAppTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     NavigateMain(navController = navController)

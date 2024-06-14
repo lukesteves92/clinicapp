@@ -1,6 +1,6 @@
-package com.inspirecoding.clinicapp.util.singleorthrow
+package com.inspirecoding.clinicapp.commons.singleorthrow
 
-import com.inspirecoding.clinicapp.domain.exception.GenericException
+import com.inspirecoding.clinicapp.commons.generic.GenericException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.single
 

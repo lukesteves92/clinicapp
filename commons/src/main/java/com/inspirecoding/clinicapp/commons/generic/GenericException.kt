@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp.domain.exception
+package com.inspirecoding.clinicapp.commons.generic
 
 sealed class GenericException(
     override val message: String? = "",

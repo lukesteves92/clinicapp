@@ -1,24 +1,25 @@
 package com.inspirecoding.clinicapp.features.login.featuretoggle
 
 import com.google.gson.Gson
-import com.inspirecoding.clinicapp.data.util.RemoteConfigUtils
+import com.inspirecoding.clinicapp.core.remoteconfig.RemoteConfigUtils
 import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-internal class GetFeatureToggleLogin(
+class GetFeatureToggleLogin(
     private val remoteConfigUtils: RemoteConfigUtils
 ) {
-    fun getLoginFeatureValueBoolean(featureKey: String): Flow<Boolean> {
-        return flow {
-            emit(remoteConfigUtils.getFeatureValueBoolean(featureKey = featureKey))
-        }
+    fun getLoginFeatureValueBoolean(featureKey: String): Boolean {
+        return remoteConfigUtils.getFeatureValueBoolean(featureKey = featureKey)
     }
 
-    fun getLoginFeatureValueString(featureKey: String): Flow<FeatureToggleLoginModel> {
-        return flow {
-            emit(remoteConfigUtils.getFeatureValueString(featureKey = featureKey).toFeatureToggleLoginModel())
-        }
+    fun getLoginFeatureValueString(): FeatureToggleLoginModel {
+        remoteConfigUtils.getFeatureValueBoolean("")
+        return remoteConfigUtils.getFeatureValueString(featureKey = KEY_FT_LOGIN_SCREEN).toFeatureToggleLoginModel()
+    }
+
+    companion object {
+        private const val KEY_FT_LOGIN_SCREEN = "ft_clinicapp_login_screen"
     }
 }
 

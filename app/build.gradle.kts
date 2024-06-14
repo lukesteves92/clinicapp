@@ -149,4 +149,7 @@ dependencies {
 
     //Project Core
     implementation(project(":core"))
+
+    //Project Commons
+    implementation(project(":commons"))
 }

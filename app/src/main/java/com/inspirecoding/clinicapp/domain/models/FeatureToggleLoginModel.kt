@@ -1,7 +1,7 @@
 package com.inspirecoding.clinicapp.domain.models
 
 import com.google.gson.annotations.SerializedName
-import com.inspirecoding.clinicapp.util.constants.Constants.KEY_EMPTY_STRING_DEFAULT
+import com.inspirecoding.clinicapp.commons.constants.Constants.KEY_EMPTY_STRING_DEFAULT
 
 data class FeatureToggleLoginModel(
     @SerializedName("login_screen_email_label")

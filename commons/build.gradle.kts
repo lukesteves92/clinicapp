@@ -5,11 +5,10 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.composeCompiler)
-    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.inspirecoding.clinicapp.home"
+    namespace = "com.inspirecoding.clinicapp.commons"
     compileSdk = 34
 
     defaultConfig {
@@ -76,13 +75,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    //Project DS
-    implementation(project(":ds"))
-
-    //Project Core
-    implementation(project(":core"))
-
-    //Project Commons
-    implementation(project(":commons"))
 }

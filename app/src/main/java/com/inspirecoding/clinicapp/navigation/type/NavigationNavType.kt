@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.navigation.NavType
 import com.google.gson.Gson
-import com.inspirecoding.clinicapp.extensions.decode
+import com.inspirecoding.clinicapp.commons.extensions.decode
 
 class NavigationNavType<T : Parcelable>(
     private val type: Class<T>,
