@@ -22,25 +22,8 @@ class RemoteConfigUtils {
         firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
     }
 
-    fun getFeatureValueBoolean(featureKey: String): Boolean {
-        var result: Boolean = false
-        firebaseRemoteConfig.fetchAndActivate()
-            .addOnCompleteListener(activity) { task ->
-                if (task.isSuccessful) {
-                    result = firebaseRemoteConfig.getBoolean("teste_bool")
-                }
-            }
-        return result
-    }
+    fun getFeatureValueBoolean(featureKey: String): Boolean = firebaseRemoteConfig.getBoolean(featureKey)
 
-    fun getFeatureValueString(featureKey: String): String {
-        var result: String = ""
-        firebaseRemoteConfig.fetchAndActivate()
-            .addOnCompleteListener(activity) { task ->
-                if (task.isSuccessful) {
-                    result = firebaseRemoteConfig.getString(featureKey)
-                }
-            }
-        return result
-    }
+    fun getFeatureValueString(featureKey: String): String = firebaseRemoteConfig.getString(featureKey)
+
 }
