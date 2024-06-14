@@ -1,20 +1,22 @@
 package com.inspirecoding.clinicapp.core.remoteconfig
 
-import com.google.firebase.ktx.Firebase
+import android.app.Activity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 
 
-class RemoteConfigUtils {
+class RemoteConfigUtils(
+    private val firebaseRemoteConfig: FirebaseRemoteConfig
+) {
 
-    private val firebaseRemoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
-
-    init {
+    fun initFirebaseRemoteConfig(activity: Activity) {
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600
         }
         firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+
+        firebaseRemoteConfig.fetchAndActivate()
+            .addOnCompleteListener(activity) {}
     }
 
     fun getFeatureValueBoolean(featureKey: String): Boolean = firebaseRemoteConfig.getBoolean(featureKey)
