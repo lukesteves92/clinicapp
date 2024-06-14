@@ -14,7 +14,6 @@ class GetFeatureToggleLogin(
     }
 
     fun getLoginFeatureValueString(): FeatureToggleLoginModel {
-        remoteConfigUtils.getFeatureValueBoolean("")
         return remoteConfigUtils.getFeatureValueString(featureKey = KEY_FT_LOGIN_SCREEN).toFeatureToggleLoginModel()
     }
 
