@@ -21,9 +21,11 @@ import com.inspirecoding.clinicapp.ds.theme.color.LightBlue
 import com.inspirecoding.clinicapp.ds.theme.color.White
 
 private val DarkColorScheme = darkColorScheme(
-    primary = DarkBlue,
-    secondary = LightBlue,
-    tertiary = White
+    primary = LightBlue,
+    secondary = DarkBlue,
+    tertiary = White,
+    onSurface = Color.DarkGray,
+    background = LightBlue
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -31,7 +33,7 @@ private val LightColorScheme = lightColorScheme(
     secondary = DarkBlue,
     tertiary = White,
     onSurface = Color.DarkGray,
-    background = White
+    background = LightBlue
 
     /* Other default colors to override
 background = Color(0xFFFFFBFE),

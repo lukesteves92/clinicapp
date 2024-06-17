@@ -1,26 +1,45 @@
 package com.inspirecoding.clinicapp.core.remoteconfig
 
 import android.app.Activity
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import com.google.firebase.Firebase
+import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
 
-
-class RemoteConfigUtils(
-    private val firebaseRemoteConfig: FirebaseRemoteConfig
-) {
+class RemoteConfigUtils {
 
     fun initFirebaseRemoteConfig(activity: Activity) {
-        val configSettings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = 3600
-        }
-        firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
 
-        firebaseRemoteConfig.fetchAndActivate()
-            .addOnCompleteListener(activity) {}
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 0
+        }
+
+        Firebase.remoteConfig.setConfigSettingsAsync(configSettings)
+
+        Firebase.remoteConfig.fetch(0)
+            .addOnCompleteListener(activity) { task ->
+                if (task.isSuccessful) {
+                    Firebase.remoteConfig.activate()
+                        .addOnCompleteListener(activity) {
+                            Log.e("FirebaseRemoteConfig", "Fetch Success")
+                        }
+                } else {
+                    Log.e("FirebaseRemoteConfig", "Fetch failed: ${task.exception}")
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        initFirebaseRemoteConfig(activity)
+                    }, 5000)
+                }
+            }
     }
 
-    fun getFeatureValueBoolean(featureKey: String): Boolean = firebaseRemoteConfig.getBoolean(featureKey)
+    fun getFeatureValueBoolean(featureKey: String): Boolean {
+        return Firebase.remoteConfig.getBoolean(featureKey)
+    }
 
-    fun getFeatureValueString(featureKey: String): String = firebaseRemoteConfig.getString(featureKey)
+    fun getFeatureValueString(featureKey: String): String {
+        return Firebase.remoteConfig.getString(featureKey)
+    }
 
 }

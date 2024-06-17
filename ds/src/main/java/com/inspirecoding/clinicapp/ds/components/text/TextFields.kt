@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp.ds.components
+package com.inspirecoding.clinicapp.ds.components.text
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

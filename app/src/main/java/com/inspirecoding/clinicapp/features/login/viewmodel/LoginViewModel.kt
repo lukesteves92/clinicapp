@@ -2,6 +2,7 @@ package com.inspirecoding.clinicapp.features.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.inspirecoding.clinicapp.commons.constants.Constants.KEY_FT_LOGIN_SCREEN
 import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
 import com.inspirecoding.clinicapp.domain.usecase.GetFeatureToggleUseCase
 import com.inspirecoding.clinicapp.features.login.action.LoginAction
@@ -19,11 +20,12 @@ class LoginViewModel(
     private val pendingActions = MutableSharedFlow<LoginAction>()
 
     private var _state: MutableStateFlow<LoginState> =
-        MutableStateFlow(LoginState.Idle)
+        MutableStateFlow(LoginState.Loading)
     var state: StateFlow<LoginState> = _state
 
     init {
         handleActions()
+        getLoginFeatureToggleScreen()
     }
 
     private fun handleActions() {
@@ -49,8 +51,4 @@ class LoginViewModel(
     }
 
     private fun LoginState.updateState() = _state.update { this }
-
-    companion object {
-        private const val KEY_FT_LOGIN_SCREEN = "ft_clinicapp_login_screen"
-    }
 }

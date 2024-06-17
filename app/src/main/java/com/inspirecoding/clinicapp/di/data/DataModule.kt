@@ -1,7 +1,7 @@
 package com.inspirecoding.clinicapp.di.data
 
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.Firebase
+import com.google.firebase.remoteconfig.remoteConfig
 import com.inspirecoding.clinicapp.core.remoteconfig.RemoteConfigUtils
 import com.inspirecoding.clinicapp.data.repository.GetFeatureToggleImpl
 import com.inspirecoding.clinicapp.domain.repository.GetFeatureToggleRepository
@@ -15,7 +15,7 @@ val dataModule = module {
     }
 
     factory {
-        RemoteConfigUtils(firebaseRemoteConfig = Firebase.remoteConfig)
+        RemoteConfigUtils()
     }
 
     factory<GetFeatureToggleRepository> {

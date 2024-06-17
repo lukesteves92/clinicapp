@@ -39,7 +39,8 @@ import com.inspirecoding.clinicapp.commons.extensions.rememberFlowWithLifecycle
 import com.inspirecoding.clinicapp.core.redirect.HomeRedirect
 import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
 import com.inspirecoding.clinicapp.ds.R
-import com.inspirecoding.clinicapp.ds.components.InputCustomField
+import com.inspirecoding.clinicapp.ds.components.logo.AnimatedClinicAppLogo
+import com.inspirecoding.clinicapp.ds.components.text.InputCustomField
 import com.inspirecoding.clinicapp.ds.theme.color.DarkBlue
 import com.inspirecoding.clinicapp.ds.theme.color.White
 import com.inspirecoding.clinicapp.features.login.action.LoginAction
@@ -52,7 +53,7 @@ import org.koin.androidx.compose.inject
 fun LoginScreen(viewModel: LoginViewModel = getViewModel()) {
 
     val viewState by rememberFlowWithLifecycle(viewModel.state)
-        .collectAsState(initial = LoginState.Idle)
+        .collectAsState(initial = LoginState.Loading)
 
     Login(state = viewState) { action ->
         viewModel.submitAction(action)
@@ -65,11 +66,9 @@ fun Login(
     action: (LoginAction) -> Unit
 ) {
 
-    action.invoke(LoginAction.GetLoginFeatureToggleScreen)
-
     when (state) {
+        is LoginState.Loading -> AnimatedClinicAppLogo()
         is LoginState.GetLoginFeatureToggleScreen -> LoginMainScreen(featureToggleLoginModel = state.featureToggleLoginModel ?: FeatureToggleLoginModel())
-        else -> {}
     }
 
 }
@@ -110,7 +109,7 @@ fun LoginMainScreen(featureToggleLoginModel: FeatureToggleLoginModel) {
                 .fillMaxWidth()
                 .height(300.dp)
                 .clip(RoundedCornerShape(20.dp)),
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
         )
 
         Spacer(modifier = Modifier.height(16.dp))

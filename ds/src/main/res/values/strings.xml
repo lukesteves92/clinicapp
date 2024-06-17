@@ -4,4 +4,5 @@
     <string name="clinicapp_forget_secret_login_label">Esqueceu sua senha?</string>
     <string name="clinicapp_register_login_label">Inscreva-se</string>
     <string name="clinicapp_remember_me_login_label">Lembrar de mim</string>
+    <string name="txt_clinic_app_animated_title">BEM-VINDO,</string>
 </resources>
