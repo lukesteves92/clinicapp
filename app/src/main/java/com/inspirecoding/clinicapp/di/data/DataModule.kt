@@ -6,7 +6,9 @@ import com.inspirecoding.clinicapp.core.data.service.ClinicAppService
 import com.inspirecoding.clinicapp.core.data.wrapper.RequestWrapper
 import com.inspirecoding.clinicapp.core.data.wrapper.RequestWrapperImpl
 import com.inspirecoding.clinicapp.core.remoteconfig.RemoteConfigUtils
+import com.inspirecoding.clinicapp.data.repository.login.GetLoginScreenImpl
 import com.inspirecoding.clinicapp.data.repository.toggle.GetFeatureToggleImpl
+import com.inspirecoding.clinicapp.domain.repository.login.GetLoginScreenRepository
 import com.inspirecoding.clinicapp.domain.repository.toggle.GetFeatureToggleRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,5 +37,9 @@ val dataModule = module {
 
     single {
         RetrofitConfig.provideOkHttpClient()
+    }
+
+    factory<GetLoginScreenRepository> {
+        GetLoginScreenImpl(wrapper = get(), service = get())
     }
 }

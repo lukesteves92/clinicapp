@@ -12,11 +12,11 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ScreenModelDomain(
-    val bottomModelDomain: BottomModelDomain,
-    val buttonModelDomain: ButtonModelDomain,
-    val columnModelDomain: ColumnModelDomain,
-    val dividerModelDomain: DividerModelDomain,
-    val fieldsModelDomain: FieldsModelDomain,
-    val imageModelDomain: ImageModelDomain,
-    val rowModelDomain: RowModelDomain
+    val bottomModelDomain: BottomModelDomain = BottomModelDomain(),
+    val buttonModelDomain: ButtonModelDomain = ButtonModelDomain(),
+    val columnModelDomain: ColumnModelDomain = ColumnModelDomain(),
+    val dividerModelDomain: DividerModelDomain = DividerModelDomain(),
+    val fieldsModelDomain: FieldsModelDomain = FieldsModelDomain(),
+    val imageModelDomain: ImageModelDomain = ImageModelDomain(),
+    val rowModelDomain: RowModelDomain = RowModelDomain()
 ) : Parcelable

@@ -2,11 +2,11 @@ package com.inspirecoding.clinicapp.features.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.inspirecoding.clinicapp.commons.constants.Constants.KEY_FT_LOGIN_SCREEN
-import com.inspirecoding.clinicapp.domain.models.toggle.FeatureToggleLoginModel
-import com.inspirecoding.clinicapp.domain.usecase.toggle.GetFeatureToggleUseCase
+import com.inspirecoding.clinicapp.commons.singleorthrow.singleOrThrow
+import com.inspirecoding.clinicapp.domain.usecase.login.GetLoginScreenUseCase
 import com.inspirecoding.clinicapp.features.login.action.LoginAction
 import com.inspirecoding.clinicapp.features.login.state.LoginState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val getFeatureToggleUseCase: GetFeatureToggleUseCase
-): ViewModel() {
+    private val getLoginScreenUseCase: GetLoginScreenUseCase
+) : ViewModel() {
 
     private val pendingActions = MutableSharedFlow<LoginAction>()
 
@@ -25,27 +25,31 @@ class LoginViewModel(
 
     init {
         handleActions()
-        getLoginFeatureToggleScreen()
+    }
+
+    private fun getLoginScreenConfig() {
+        viewModelScope.launch(Dispatchers.Main) {
+            getLoginScreenUseCase.getLoginScreen().singleOrThrow(
+                success = { model ->
+                    LoginState.GetLoginScreenConfig(screenModelDomain = model).updateState()
+                },
+                error = {}
+            )
+        }
     }
 
     private fun handleActions() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             pendingActions.collect { action ->
                 when (action) {
-                    is LoginAction.GetLoginFeatureToggleScreen -> getLoginFeatureToggleScreen()
+                    is LoginAction.GetLoginScreenConfig -> getLoginScreenConfig()
                 }
             }
         }
     }
 
-    private fun getLoginFeatureToggleScreen() {
-        viewModelScope.launch {
-            LoginState.GetLoginFeatureToggleScreen(featureToggleLoginModel = getFeatureToggleUseCase.getFeatureToggleValueString(featureKey = KEY_FT_LOGIN_SCREEN, clazz = FeatureToggleLoginModel())).updateState()
-        }
-    }
-
     fun submitAction(action: LoginAction) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             pendingActions.emit(action)
         }
     }

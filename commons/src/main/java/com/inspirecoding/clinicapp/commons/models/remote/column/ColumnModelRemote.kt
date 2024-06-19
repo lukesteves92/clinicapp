@@ -7,6 +7,6 @@ data class ColumnModelRemote(
     val horizontalAlignment: String,
     @SerializedName("padding")
     val padding: Int,
-    @SerializedName("verticalAlignment")
-    val verticalAlignment: String
+    @SerializedName("verticalArrangement")
+    val verticalArrangement: String
 )

@@ -36,6 +36,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.inspirecoding.clinicapp.commons.extensions.convertBase64ToBitmap
 import com.inspirecoding.clinicapp.commons.extensions.rememberFlowWithLifecycle
+import com.inspirecoding.clinicapp.commons.models.domain.screen.ScreenModelDomain
 import com.inspirecoding.clinicapp.core.redirect.HomeRedirect
 import com.inspirecoding.clinicapp.domain.models.toggle.FeatureToggleLoginModel
 import com.inspirecoding.clinicapp.ds.R
@@ -66,15 +67,17 @@ fun Login(
     action: (LoginAction) -> Unit
 ) {
 
+    action(LoginAction.GetLoginScreenConfig)
+
     when (state) {
         is LoginState.Loading -> AnimatedClinicAppLogo()
-        is LoginState.GetLoginFeatureToggleScreen -> LoginMainScreen(featureToggleLoginModel = state.featureToggleLoginModel ?: FeatureToggleLoginModel())
+        is LoginState.GetLoginScreenConfig -> LoginMainScreen(screenModelDomain = state.screenModelDomain ?: ScreenModelDomain())
     }
 
 }
 
 @Composable
-fun LoginMainScreen(featureToggleLoginModel: FeatureToggleLoginModel) {
+fun LoginMainScreen(screenModelDomain: ScreenModelDomain) {
 
     val context = LocalContext.current
     val redirectHome: HomeRedirect by inject()
@@ -86,17 +89,17 @@ fun LoginMainScreen(featureToggleLoginModel: FeatureToggleLoginModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(screenModelDomain.columnModelDomain.padding.dp)
             .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = screenModelDomain.columnModelDomain.horizontalAlignment,
+        verticalArrangement = screenModelDomain.columnModelDomain.verticalArrangement
     ) {
 
         Image(
             painter = rememberAsyncImagePainter(
                 ImageRequest.Builder(LocalContext.current)
                     .data(
-                        featureToggleLoginModel.loginScreenLogoBase64.convertBase64ToBitmap()
+                        screenModelDomain.imageModelDomain.value.convertBase64ToBitmap()
                             ?: R.drawable.ic_clinicapp_logo
                     )
                     .apply(block = fun ImageRequest.Builder.() {
@@ -107,49 +110,49 @@ fun LoginMainScreen(featureToggleLoginModel: FeatureToggleLoginModel) {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
+                .height(screenModelDomain.imageModelDomain.height.dp)
                 .clip(RoundedCornerShape(20.dp)),
             contentScale = ContentScale.Crop,
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(screenModelDomain.imageModelDomain.spacer.dp))
 
         InputCustomField(
             text = email,
-            label = featureToggleLoginModel.loginScreenEmailLabel,
+            label = screenModelDomain.fieldsModelDomain.firstLabel,
             onTextChange = {},
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(screenModelDomain.fieldsModelDomain.spacer.dp))
 
         InputCustomField(
             text = secret,
-            label = featureToggleLoginModel.loginScreenSecretLabel,
+            label = screenModelDomain.fieldsModelDomain.secondLabel,
             onTextChange = {},
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(screenModelDomain.fieldsModelDomain.spacer.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = screenModelDomain.rowModelDomain.horizontalArrangement,
+            verticalAlignment = screenModelDomain.rowModelDomain.verticalAlignment
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row(verticalAlignment = screenModelDomain.rowModelDomain.verticalAlignment) {
                 Checkbox(
                     checked = rememberMe.value,
                     onCheckedChange = { rememberMe.value = it }
                 )
-                Text(featureToggleLoginModel.loginScreenRememberMeLabel)
+                Text(screenModelDomain.rowModelDomain.checkboxLabel)
             }
             Text(
-                text = featureToggleLoginModel.loginScreenForgotPasswordLabel,
+                text = screenModelDomain.rowModelDomain.firstLabel,
                 color = DarkBlue,
                 modifier = Modifier.clickable {
                     Toast.makeText(context, "Esqueceu sua senha?", Toast.LENGTH_SHORT).show()
                 }
             )
         }
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(screenModelDomain.rowModelDomain.spacer.dp))
         Button(
             onClick = {
                 redirectHome.redirectToHome(context)
@@ -162,16 +165,16 @@ fun LoginMainScreen(featureToggleLoginModel: FeatureToggleLoginModel) {
                 disabledContentColor = Color.LightGray
             )
         ) {
-            Text("ENTRAR", color = Color.White)
+            Text(screenModelDomain.buttonModelDomain.label, color = Color.White)
         }
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(screenModelDomain.buttonModelDomain.spacer.dp))
         HorizontalDivider(modifier = Modifier.fillMaxWidth())
-        Spacer(modifier = Modifier.height(24.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Não tem uma conta?")
-            Spacer(modifier = Modifier.width(4.dp))
+        Spacer(modifier = Modifier.height(screenModelDomain.dividerModelDomain.spacer.dp))
+        Row(verticalAlignment = screenModelDomain.bottomModelDomain.verticalAlignment) {
+            Text(screenModelDomain.bottomModelDomain.firstLabel)
+            Spacer(modifier = Modifier.width(screenModelDomain.dividerModelDomain.spacer.dp))
             Text(
-                text = featureToggleLoginModel.loginScreenRegisterText,
+                text = screenModelDomain.bottomModelDomain.secondLabel,
                 color = DarkBlue,
                 modifier = Modifier.clickable {
                     Toast.makeText(context, "Inscreva-se", Toast.LENGTH_SHORT).show()
