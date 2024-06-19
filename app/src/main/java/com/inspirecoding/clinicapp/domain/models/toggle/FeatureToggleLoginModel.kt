@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp.domain.models
+package com.inspirecoding.clinicapp.domain.models.toggle
 
 import com.google.gson.annotations.SerializedName
 import com.inspirecoding.clinicapp.commons.constants.Constants.KEY_EMPTY_STRING_DEFAULT

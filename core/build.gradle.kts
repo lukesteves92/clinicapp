@@ -82,6 +82,17 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebaseConfig)
 
+    //Network
+    implementation(libs.ok2curl)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp)
+
+    //Memory
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+
     //Project Commons
     implementation(project(":commons"))
 }

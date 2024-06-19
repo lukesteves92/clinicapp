@@ -1,8 +1,8 @@
-package com.inspirecoding.clinicapp.data.repository
+package com.inspirecoding.clinicapp.data.repository.toggle
 
 import com.google.gson.Gson
 import com.inspirecoding.clinicapp.core.remoteconfig.RemoteConfigUtils
-import com.inspirecoding.clinicapp.domain.repository.GetFeatureToggleRepository
+import com.inspirecoding.clinicapp.domain.repository.toggle.GetFeatureToggleRepository
 
 class GetFeatureToggleImpl(
     private val remoteConfigUtils: RemoteConfigUtils

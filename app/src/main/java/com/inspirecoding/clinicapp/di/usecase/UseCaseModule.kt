@@ -1,6 +1,6 @@
 package com.inspirecoding.clinicapp.di.usecase
 
-import com.inspirecoding.clinicapp.domain.usecase.GetFeatureToggleUseCase
+import com.inspirecoding.clinicapp.domain.usecase.toggle.GetFeatureToggleUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {

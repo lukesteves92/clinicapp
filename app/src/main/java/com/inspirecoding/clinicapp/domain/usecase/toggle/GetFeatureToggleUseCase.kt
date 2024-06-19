@@ -1,6 +1,6 @@
-package com.inspirecoding.clinicapp.domain.usecase
+package com.inspirecoding.clinicapp.domain.usecase.toggle
 
-import com.inspirecoding.clinicapp.domain.repository.GetFeatureToggleRepository
+import com.inspirecoding.clinicapp.domain.repository.toggle.GetFeatureToggleRepository
 
 class GetFeatureToggleUseCase(
     private val getFeatureToggleRepository: GetFeatureToggleRepository

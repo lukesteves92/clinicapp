@@ -37,7 +37,7 @@ import coil.request.ImageRequest
 import com.inspirecoding.clinicapp.commons.extensions.convertBase64ToBitmap
 import com.inspirecoding.clinicapp.commons.extensions.rememberFlowWithLifecycle
 import com.inspirecoding.clinicapp.core.redirect.HomeRedirect
-import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
+import com.inspirecoding.clinicapp.domain.models.toggle.FeatureToggleLoginModel
 import com.inspirecoding.clinicapp.ds.R
 import com.inspirecoding.clinicapp.ds.components.logo.AnimatedClinicAppLogo
 import com.inspirecoding.clinicapp.ds.components.text.InputCustomField

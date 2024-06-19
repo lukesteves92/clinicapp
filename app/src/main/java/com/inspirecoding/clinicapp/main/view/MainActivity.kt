@@ -1,10 +1,6 @@
 package com.inspirecoding.clinicapp.main.view
 
-import android.app.Activity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,10 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.firebase.Firebase
-import com.google.firebase.FirebaseApp
-import com.google.firebase.remoteconfig.remoteConfig
-import com.google.firebase.remoteconfig.remoteConfigSettings
 import com.inspirecoding.clinicapp.navigation.nav.Navigation
 import com.inspirecoding.clinicapp.core.navigation.screen.Screen
 import com.inspirecoding.clinicapp.core.remoteconfig.RemoteConfigUtils

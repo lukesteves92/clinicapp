@@ -3,8 +3,8 @@ package com.inspirecoding.clinicapp.features.login.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.inspirecoding.clinicapp.commons.constants.Constants.KEY_FT_LOGIN_SCREEN
-import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
-import com.inspirecoding.clinicapp.domain.usecase.GetFeatureToggleUseCase
+import com.inspirecoding.clinicapp.domain.models.toggle.FeatureToggleLoginModel
+import com.inspirecoding.clinicapp.domain.usecase.toggle.GetFeatureToggleUseCase
 import com.inspirecoding.clinicapp.features.login.action.LoginAction
 import com.inspirecoding.clinicapp.features.login.state.LoginState
 import kotlinx.coroutines.flow.MutableSharedFlow

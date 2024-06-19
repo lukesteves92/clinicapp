@@ -1,6 +1,4 @@
-package com.inspirecoding.clinicapp.domain.repository
-
-import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
+package com.inspirecoding.clinicapp.domain.repository.toggle
 
 interface GetFeatureToggleRepository {
     fun getFeatureToggleValueBoolean(featureKey: String): Boolean

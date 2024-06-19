@@ -1,6 +1,6 @@
 package com.inspirecoding.clinicapp.features.login.state
 
-import com.inspirecoding.clinicapp.domain.models.FeatureToggleLoginModel
+import com.inspirecoding.clinicapp.domain.models.toggle.FeatureToggleLoginModel
 
 sealed interface LoginState {
     data object Loading : LoginState
