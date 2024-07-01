@@ -1,6 +1,7 @@
 package com.inspirecoding.clinicapp.core.data.retrofit
 
 import com.inspirecoding.clinicapp.commons.constants.Constants.KEY_EMPTY_STRING_DEFAULT
+import com.inspirecoding.clinicapp.core.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response

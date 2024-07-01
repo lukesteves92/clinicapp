@@ -2,7 +2,7 @@ package com.inspirecoding.clinicapp.commons.models.remote.row
 
 import com.google.gson.annotations.SerializedName
 
-data class RowModelRemote(
+data class RowModelResponse(
     @SerializedName("checkboxLabel")
     val checkboxLabel: String,
     @SerializedName("firstLabel")

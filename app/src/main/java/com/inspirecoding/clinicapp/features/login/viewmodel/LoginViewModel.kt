@@ -1,7 +1,13 @@
 package com.inspirecoding.clinicapp.features.login.viewmodel
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.inspirecoding.clinicapp.commons.constants.Constants.PreferencesKeys.BOTTOMITEMS
+import com.inspirecoding.clinicapp.commons.constants.Constants.PreferencesKeys.SHARED_NAME
+import com.inspirecoding.clinicapp.commons.models.domain.navigation.main.NavigationModelDomain
 import com.inspirecoding.clinicapp.commons.singleorthrow.singleOrThrow
 import com.inspirecoding.clinicapp.domain.usecase.login.GetLoginScreenUseCase
 import com.inspirecoding.clinicapp.features.login.action.LoginAction
@@ -17,6 +23,10 @@ class LoginViewModel(
     private val getLoginScreenUseCase: GetLoginScreenUseCase
 ) : ViewModel() {
 
+    private lateinit var sharedPreferences: SharedPreferences
+
+    val gson = Gson()
+
     private val pendingActions = MutableSharedFlow<LoginAction>()
 
     private var _state: MutableStateFlow<LoginState> =
@@ -31,10 +41,26 @@ class LoginViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             getLoginScreenUseCase.getLoginScreen().singleOrThrow(
                 success = { model ->
+                    saveSharedPreferencesNavigation(navigationModelDomain = model.navigationModelDomain)
                     LoginState.GetLoginScreenConfig(screenModelDomain = model).updateState()
                 },
                 error = {}
             )
+        }
+    }
+
+    private fun setupSharedPreferencesNavigation(context: Context) {
+        sharedPreferences =
+            context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE)
+    }
+
+    private fun saveSharedPreferencesNavigation(navigationModelDomain: NavigationModelDomain) {
+        sharedPreferences.edit().run {
+            putString(
+                BOTTOMITEMS,
+                gson.toJson(navigationModelDomain)
+            )
+            apply()
         }
     }
 
@@ -43,6 +69,7 @@ class LoginViewModel(
             pendingActions.collect { action ->
                 when (action) {
                     is LoginAction.GetLoginScreenConfig -> getLoginScreenConfig()
+                    is LoginAction.GetSharedPreferencesNavigation -> setupSharedPreferencesNavigation(context = action.context)
                 }
             }
         }

@@ -2,7 +2,7 @@ package com.inspirecoding.clinicapp.commons.models.remote.button
 
 import com.google.gson.annotations.SerializedName
 
-data class ButtonModelRemote(
+data class ButtonModelResponse(
     @SerializedName("label")
     val label: String,
     @SerializedName("redirect")

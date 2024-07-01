@@ -25,4 +25,9 @@ object Constants {
         const val KEY_HORIZONTAL_START = "start"
         const val KEY_HORIZONTAL_CENTER = "centerH"
     }
+
+    object PreferencesKeys {
+        const val SHARED_NAME = "clinic_app_preferences"
+        const val BOTTOMITEMS = "bottomitems"
+    }
 }

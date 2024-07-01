@@ -67,6 +67,9 @@ fun Login(
     action: (LoginAction) -> Unit
 ) {
 
+    val context = LocalContext.current
+
+    action(LoginAction.GetSharedPreferencesNavigation(context = context))
     action(LoginAction.GetLoginScreenConfig)
 
     when (state) {
@@ -148,7 +151,7 @@ fun LoginMainScreen(screenModelDomain: ScreenModelDomain) {
                 text = screenModelDomain.rowModelDomain.firstLabel,
                 color = DarkBlue,
                 modifier = Modifier.clickable {
-                    Toast.makeText(context, "Esqueceu sua senha?", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, screenModelDomain.rowModelDomain.firstLabel, Toast.LENGTH_SHORT).show()
                 }
             )
         }
@@ -156,7 +159,7 @@ fun LoginMainScreen(screenModelDomain: ScreenModelDomain) {
         Button(
             onClick = {
                 redirectHome.redirectToHome(context)
-                Toast.makeText(context, "Entrar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, screenModelDomain.buttonModelDomain.label, Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.textButtonColors(
@@ -177,7 +180,7 @@ fun LoginMainScreen(screenModelDomain: ScreenModelDomain) {
                 text = screenModelDomain.bottomModelDomain.secondLabel,
                 color = DarkBlue,
                 modifier = Modifier.clickable {
-                    Toast.makeText(context, "Inscreva-se", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, screenModelDomain.bottomModelDomain.secondLabel, Toast.LENGTH_SHORT).show()
                 }
             )
         }

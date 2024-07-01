@@ -2,7 +2,7 @@ package com.inspirecoding.clinicapp.commons.models.remote.column
 
 import com.google.gson.annotations.SerializedName
 
-data class ColumnModelRemote(
+data class ColumnModelResponse(
     @SerializedName("horizontalAlignment")
     val horizontalAlignment: String,
     @SerializedName("padding")

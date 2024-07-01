@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".main.HomeActivity"
+            android:name=".main.view.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:windowSoftInputMode="adjustResize"

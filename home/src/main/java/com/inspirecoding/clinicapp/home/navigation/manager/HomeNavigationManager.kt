@@ -1,4 +1,4 @@
-package com.inspirecoding.clinicapp.navigation.manager
+package com.inspirecoding.clinicapp.home.navigation.manager
 
 import androidx.navigation.NavOptions
 import androidx.navigation.NavOptionsBuilder
@@ -7,7 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
-class NavigationManager(private val scope: CoroutineScope) {
+class HomeNavigationManager(private val scope: CoroutineScope) {
 
     var navigationEvent: MutableSharedFlow<NavigationCommand> = MutableSharedFlow()
         private set
@@ -57,7 +57,7 @@ class NavigationManager(private val scope: CoroutineScope) {
 
 sealed class NavigationType {
 
-    object NavigateTo : NavigationType()
+    data object NavigateTo : NavigationType()
 
     class PopUpTo(val inclusive: Boolean, val savedStateHandle: Pair<String, Any?>? = null) :
         NavigationType()

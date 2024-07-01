@@ -7,8 +7,10 @@ import com.inspirecoding.clinicapp.commons.models.domain.column.ColumnModelDomai
 import com.inspirecoding.clinicapp.commons.models.domain.divider.DividerModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.fields.FieldsModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.image.ImageModelDomain
+import com.inspirecoding.clinicapp.commons.models.domain.navigation.main.NavigationModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.row.RowModelDomain
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Parcelize
 data class ScreenModelDomain(
@@ -18,5 +20,6 @@ data class ScreenModelDomain(
     val dividerModelDomain: DividerModelDomain = DividerModelDomain(),
     val fieldsModelDomain: FieldsModelDomain = FieldsModelDomain(),
     val imageModelDomain: ImageModelDomain = ImageModelDomain(),
-    val rowModelDomain: RowModelDomain = RowModelDomain()
+    val rowModelDomain: RowModelDomain = RowModelDomain(),
+    val navigationModelDomain: @RawValue NavigationModelDomain = NavigationModelDomain()
 ) : Parcelable

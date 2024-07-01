@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import com.inspirecoding.clinicapp.core.redirect.HomeRedirect
-import com.inspirecoding.clinicapp.home.main.HomeActivity
+import com.inspirecoding.clinicapp.home.main.view.HomeActivity
 
 class HomeRedirectImpl : HomeRedirect {
     override fun redirectToHome(context: Context) {

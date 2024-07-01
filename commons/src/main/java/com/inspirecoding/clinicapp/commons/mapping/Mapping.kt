@@ -18,53 +18,57 @@ import com.inspirecoding.clinicapp.commons.models.domain.column.ColumnModelDomai
 import com.inspirecoding.clinicapp.commons.models.domain.divider.DividerModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.fields.FieldsModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.image.ImageModelDomain
+import com.inspirecoding.clinicapp.commons.models.domain.navigation.items.NavigationItemsModelDomain
+import com.inspirecoding.clinicapp.commons.models.domain.navigation.main.NavigationModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.row.RowModelDomain
 import com.inspirecoding.clinicapp.commons.models.domain.screen.ScreenModelDomain
-import com.inspirecoding.clinicapp.commons.models.remote.bottom.BottomModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.button.ButtonModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.column.ColumnModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.divider.DividerModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.fields.FieldsModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.image.ImageModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.row.RowModelRemote
-import com.inspirecoding.clinicapp.commons.models.remote.screen.ScreenModelRemote
+import com.inspirecoding.clinicapp.commons.models.remote.bottom.BottomModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.button.ButtonModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.column.ColumnModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.divider.DividerModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.fields.FieldsModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.image.ImageModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.navigation.items.NavigationItemsModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.navigation.main.NavigationModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.row.RowModelResponse
+import com.inspirecoding.clinicapp.commons.models.remote.screen.ScreenModelResponse
 
-fun ButtonModelRemote.mapToDomain() = ButtonModelDomain(
+fun ButtonModelResponse.mapToDomain() = ButtonModelDomain(
     label = this.label,
     redirect = this.redirect,
     spacer = this.spacer
 )
 
-fun DividerModelRemote.mapToDomain() = DividerModelDomain(
+fun DividerModelResponse.mapToDomain() = DividerModelDomain(
     spacer = this.spacer
 )
 
-fun FieldsModelRemote.mapToDomain() = FieldsModelDomain(
+fun FieldsModelResponse.mapToDomain() = FieldsModelDomain(
     spacer = this.spacer,
     firstLabel = this.firstLabel,
     secondLabel = this.secondLabel
 )
 
-fun ImageModelRemote.mapToDomain() = ImageModelDomain(
+fun ImageModelResponse.mapToDomain() = ImageModelDomain(
     spacer = this.spacer,
     height = this.height,
     value = this.value
 )
 
-fun BottomModelRemote.mapToDomain() = BottomModelDomain(
+fun BottomModelResponse.mapToDomain() = BottomModelDomain(
     firstLabel = this.firstLabel,
     redirect = this.redirect,
     secondLabel = this.secondLabel,
     verticalAlignment = this.verticalAlignment.convertVerticalAlignment()
 )
 
-fun ColumnModelRemote.mapToDomain() = ColumnModelDomain(
+fun ColumnModelResponse.mapToDomain() = ColumnModelDomain(
     padding = this.padding,
     horizontalAlignment = this.horizontalAlignment.convertHorizontalAlignment(),
     verticalArrangement = this.verticalArrangement.convertArrangement()
 )
 
-fun RowModelRemote.mapToDomain() = RowModelDomain(
+fun RowModelResponse.mapToDomain() = RowModelDomain(
     checkboxLabel = this.checkboxLabel,
     firstLabel = this.firstLabel,
     spacer = this.spacer,
@@ -72,14 +76,25 @@ fun RowModelRemote.mapToDomain() = RowModelDomain(
     verticalAlignment = this.verticalAlignment.convertVerticalAlignment()
 )
 
-fun ScreenModelRemote.mapToDomain() = ScreenModelDomain(
-    bottomModelDomain = this.bottomModelRemote.mapToDomain(),
-    buttonModelDomain = this.buttonModelRemote.mapToDomain(),
-    columnModelDomain = this.columnModelRemote.mapToDomain(),
-    dividerModelDomain = this.dividerModelRemote.mapToDomain(),
-    fieldsModelDomain = this.fieldsModelRemote.mapToDomain(),
-    imageModelDomain = this.imageModelRemote.mapToDomain(),
-    rowModelDomain = this.rowModelRemote.mapToDomain()
+fun NavigationModelResponse.mapToDomain() = NavigationModelDomain(
+    spacer = this.spacer,
+    navigationItems = this.navigationItems.map { it.mapToDomain() }
+)
+
+fun NavigationItemsModelResponse.mapToDomain() = NavigationItemsModelDomain(
+    name = this.name,
+    redirectTo = this.redirectTo
+)
+
+fun ScreenModelResponse.mapToDomain() = ScreenModelDomain(
+    bottomModelDomain = this.bottomModelResponse.mapToDomain(),
+    buttonModelDomain = this.buttonModelResponse.mapToDomain(),
+    columnModelDomain = this.columnModelResponse.mapToDomain(),
+    dividerModelDomain = this.dividerModelResponse.mapToDomain(),
+    fieldsModelDomain = this.fieldsModelResponse.mapToDomain(),
+    imageModelDomain = this.imageModelResponse.mapToDomain(),
+    rowModelDomain = this.rowModelResponse.mapToDomain(),
+    navigationModelDomain = this.navigationModelResponse.mapToDomain()
 )
 
 fun String.convertArrangement(): Arrangement.HorizontalOrVertical =
